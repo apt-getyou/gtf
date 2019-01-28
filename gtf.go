@@ -32,7 +32,9 @@ var GtfTextFuncMap = textTemplate.FuncMap{
 	},
 	"default": func(arg interface{}, value interface{}) interface{} {
 		defer recovery()
-
+		if value == nil {
+			return arg
+		}
 		v := reflect.ValueOf(value)
 		switch v.Kind() {
 		case reflect.String, reflect.Slice, reflect.Array, reflect.Map:
